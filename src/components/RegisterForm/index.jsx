@@ -53,7 +53,6 @@ export const RegisterForm = () => {
       toast.success("Conta criada com sucesso!");
       navigate("/");
     } catch (error) {
-      console.log(error);
       toast.error("Ops! Algo deu errado");
     }
     reset();
