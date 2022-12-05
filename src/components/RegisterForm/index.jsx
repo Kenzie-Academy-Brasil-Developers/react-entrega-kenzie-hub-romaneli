@@ -33,7 +33,7 @@ export const RegisterForm = () => {
     passwordConfirm: yup
       .string()
       .required("Confirmar senha obrigatório")
-      .oneOf(["password"], "Senhas não conferem"),
+      .oneOf([yup.ref("password")], "Senhas não conferem"),
     bio: yup.string().required("Este campo é obrigatorio"),
     contact: yup.string().required("Este campo é obrigatório"),
     course_module: yup.string().required("Este campo é obrigatório"),
