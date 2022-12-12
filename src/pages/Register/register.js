@@ -7,4 +7,5 @@ export const StyledRegisterPage = styled.div`
   margin-top: 78px;
   margin-bottom: 36px;
   width: 25%;
+  min-width: 296px;
 `;

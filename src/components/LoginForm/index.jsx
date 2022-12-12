@@ -4,7 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { Api } from "../../services/api";
 import { toast } from "react-toastify";
-import { useState } from "react";
+import { useContext } from "react";
 import { StyledDivLogin } from "./loginPage";
 import { StyledForm } from "../../styles/form";
 import { StyledError, StyledH2, StyledSpan } from "../../styles/typography";
@@ -12,9 +12,10 @@ import {
   StyledButtonPrimary,
   StyledButtonSecondary,
 } from "../../styles/buttons";
+import { UserContext } from "../../contexts/UserContext";
 
 export const LoginForm = () => {
-  const [loading, setLoading] = useState(false);
+  const { loading, setLoading, setUser } = useContext(UserContext);
   const navigate = useNavigate();
 
   const formSchema = yup.object().shape({
@@ -39,10 +40,10 @@ export const LoginForm = () => {
       toast.success("Login feito com sucesso");
       window.localStorage.setItem("@TOKEN", response.data.token);
       window.localStorage.setItem("@USERID", response.data.user.id);
-
+      setUser(response.data.user);
       navigate("/dashboard");
     } catch (error) {
-      toast.error("verifique login e senha e tente novamente");
+      toast.error("verifique login e senha e tente novamente!");
     } finally {
       setLoading(false);
     }

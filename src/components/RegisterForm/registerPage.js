@@ -5,7 +5,7 @@ export const StyledDivRegister = styled.div`
   flex-direction: column;
   align-items: center;
   width: 25%;
-  min-width: 260px;
+  min-width: 296px;
   background-color: var(--grey-2);
   border-radius: 4px;
   box-sizing: border-box;

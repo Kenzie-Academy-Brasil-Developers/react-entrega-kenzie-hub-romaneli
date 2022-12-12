@@ -1,22 +1,38 @@
-import { useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Api } from "../../services/api";
 import logo from "../../assets/Logo.svg";
-import { StyledButtonTertiary } from "../../styles/buttons";
+import {
+  StyledButtonAddTech,
+  StyledButtonTertiary,
+} from "../../styles/buttons";
 import { StyledHeader } from "../../styles/header";
-import { StyledH2, StyledSpan } from "../../styles/typography";
-import { StyledDivUser } from "./dashboard";
+import {
+  StyledH2,
+  StyledH3,
+  StyledH5,
+  StyledSpan,
+} from "../../styles/typography";
+import { StyledDivHeaderTechs, StyledDivUser, StyledUl } from "./dashboard";
+import { UserContext } from "../../contexts/UserContext";
+import { Technologies } from "../../components/Technologies";
+import { ModalAddTech } from "../../components/ModalAddTech";
 
-export const Dashboard = ({ user, setUser }) => {
+export const Dashboard = () => {
+  const { user, setUser, dataUser } = useContext(UserContext);
+  const [modal, setModal] = useState(false);
   const navigate = useNavigate();
   const userId = window.localStorage.getItem("@USERID");
 
   useEffect(() => {
     const dashboardUser = async (id) => {
       try {
+        setLoading(true);
         const response = await Api.get(`users/${id}`);
         setUser(response.data);
-      } catch (error) {}
+      } catch (error) {
+        return error;
+      }
     };
     dashboardUser(userId);
   }, []);
@@ -39,9 +55,25 @@ export const Dashboard = ({ user, setUser }) => {
         </StyledButtonTertiary>
       </StyledHeader>
       <StyledDivUser>
-        <StyledH2>{`Olá, ${user.name}`}</StyledH2>
-        <StyledSpan>{user.course_module}</StyledSpan>
+        <StyledH2>{user && `Olá, ${user.name}`}</StyledH2>
+        <StyledSpan>{user && user.course_module}</StyledSpan>
       </StyledDivUser>
+      <StyledDivHeaderTechs>
+        <StyledH3>Tecnologias</StyledH3>
+        <StyledButtonAddTech onClick={() => setModal(true)}>
+          +
+        </StyledButtonAddTech>
+      </StyledDivHeaderTechs>
+      <StyledUl>
+        {dataUser.length != 0 ? (
+          dataUser.map((tech, index) => (
+            <Technologies tech={tech} key={index} />
+          ))
+        ) : (
+          <StyledH5>Adicione novas Tecnologias!</StyledH5>
+        )}
+      </StyledUl>
+      {modal && <ModalAddTech setModal={setModal} />}
     </>
   );
 };

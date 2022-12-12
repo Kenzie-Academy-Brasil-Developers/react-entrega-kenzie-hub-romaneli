@@ -46,3 +46,17 @@ export const StyledButtonTertiary = styled.button`
     background-color: var(--grey-3);
   }
 `;
+
+export const StyledButtonAddTech = styled.button`
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  background-color: var(--grey-2);
+  font-size: 21px;
+  color: var(--white);
+  text-align: center;
+
+  :hover {
+    background-color: var(--grey-3);
+  }
+`;

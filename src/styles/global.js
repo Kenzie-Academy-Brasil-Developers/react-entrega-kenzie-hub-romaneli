@@ -13,8 +13,10 @@ export const GlobalStyle = createGlobalStyle`
       --grey-3:#343B41;
       --grey-4:#868E96;
       --grey-5:#F8F9FA;
+      --grey-opacity:#12121480;
       --sucess:#3FE864;
       --negative:#E83F5B;
+      --white: #FFFFFF;
 }
 
 body{
