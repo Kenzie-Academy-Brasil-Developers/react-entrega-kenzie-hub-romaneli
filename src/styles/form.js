@@ -38,6 +38,6 @@ export const StyledForm = styled.form`
 
   select {
     appearance: none;
-    background: url(/src/assets/vector-select.png) 97% 50% no-repeat;
+    background: url(/public/vector-select.png) 97% 50% no-repeat;
   }
 `;
