@@ -1,5 +1,4 @@
 import styled from "styled-components";
-
 export const StyledForm = styled.form`
   width: 100%;
   display: flex;
@@ -38,6 +37,6 @@ export const StyledForm = styled.form`
 
   select {
     appearance: none;
-    background: url(/public/vector-select.png) 97% 50% no-repeat;
+    background: url(../../public/vector-select.png) 97% 50% no-repeat;
   }
 `;
