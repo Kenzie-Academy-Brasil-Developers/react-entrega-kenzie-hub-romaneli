@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Api } from "../../services/api";
 import logo from "../../assets/Logo.svg";
@@ -17,10 +17,12 @@ import { StyledDivHeaderTechs, StyledDivUser, StyledUl } from "./dashboard";
 import { UserContext } from "../../contexts/UserContext";
 import { Technologies } from "../../components/Technologies";
 import { ModalAddTech } from "../../components/ModalAddTech";
+import { TechContext } from "../../contexts/TechContext";
+import { ModalEditTech } from "../../components/ModalEditTech";
 
 export const Dashboard = () => {
-  const { user, setUser, dataUser } = useContext(UserContext);
-  const [modal, setModal] = useState(false);
+  const { user, setUser, techUser } = useContext(UserContext);
+  const { modal, setModal, modalEdit, techSelected } = useContext(TechContext);
   const navigate = useNavigate();
   const userId = window.localStorage.getItem("@USERID");
 
@@ -65,15 +67,16 @@ export const Dashboard = () => {
         </StyledButtonAddTech>
       </StyledDivHeaderTechs>
       <StyledUl>
-        {dataUser.length != 0 ? (
-          dataUser.map((tech, index) => (
+        {techUser.length != 0 ? (
+          techUser.map((tech, index) => (
             <Technologies tech={tech} key={index} />
           ))
         ) : (
           <StyledH5>Adicione novas Tecnologias!</StyledH5>
         )}
       </StyledUl>
-      {modal && <ModalAddTech setModal={setModal} />}
+      {modal && <ModalAddTech />}
+      {modalEdit && <ModalEditTech techSelected={techSelected} />}
     </>
   );
 };

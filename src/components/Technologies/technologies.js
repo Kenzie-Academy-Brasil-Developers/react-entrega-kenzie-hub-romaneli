@@ -20,4 +20,9 @@ export const StyledLi = styled.li`
     align-items: center;
     gap: 22px;
   }
+
+  img {
+    width: 14px;
+    height: 14px;
+  }
 `;

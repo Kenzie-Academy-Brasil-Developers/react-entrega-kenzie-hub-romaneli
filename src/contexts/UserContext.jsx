@@ -6,7 +6,7 @@ export const UserContext = createContext({});
 
 export const Providers = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [dataUser, setDataUser] = useState([]);
+  const [techUser, setTechUser] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
@@ -19,7 +19,7 @@ export const Providers = ({ children }) => {
         try {
           const response = await Api.get("profile");
           setUser(response.data);
-          setDataUser(response.data.techs);
+          setTechUser(response.data.techs);
           navigate("/dashboard");
         } catch (error) {
           window.localStorage.clear();
@@ -30,11 +30,11 @@ export const Providers = ({ children }) => {
       }
     }
     selfLogin();
-  }, [dataUser]);
+  }, [techUser]);
 
   return (
     <UserContext.Provider
-      value={{ user, setUser, loading, setLoading, dataUser, setDataUser }}
+      value={{ user, setUser, loading, setLoading, techUser, setTechUser }}
     >
       {children}
     </UserContext.Provider>

@@ -35,4 +35,9 @@ export const StyledForm = styled.form`
       line-height: 1.625rem;
     }
   }
+
+  select {
+    appearance: none;
+    background: url(/src/assets/vector-select.png) 97% 50% no-repeat;
+  }
 `;
